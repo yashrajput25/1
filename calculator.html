@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+<p>
+
+    <button onclick="add_to_string('1')">
+        1
+    </button>
+
+    <button onclick="add_to_string('2')">
+        2
+    </button>
+
+    <button onclick="add_to_string('3')">
+        3
+    </button>
+</p>
+
+<p>
+
+    <button onclick="add_to_string('4')">
+        4
+    </button>
+
+    <button onclick="add_to_string('5')">
+        5
+    </button>
+
+    <button onclick="add_to_string('6')">
+        6
+    </button>
+</p>
+
+<p>
+
+    <button onclick="add_to_string('7')">
+        7
+    </button>
+
+    <button onclick="add_to_string('8')">
+        8
+    </button>
+
+    <button onclick="add_to_string('9')">
+        9
+    </button>
+</p>
+
+<p>
+    <button onclick="add_to_string(' + ')">
+        +
+    </button>
+    
+    <button onclick="add_to_string(' -')">
+        -
+    </button>
+
+    <button onclick="add_to_string(' *')">
+        *
+    </button>
+
+    
+    <button onclick="add_to_string(' / ')">
+        /
+    </button>
+
+    <button onclick="calcResult()">
+        =
+    </button>
+</p>
+
+    <script>
+        let calculation="";
+
+        function add_to_string(x){
+            calculation+=x;
+            console.log(calculation);
+        }
+
+        function calcResult(){
+            calculation = eval(calculation);
+            console.log(calculation);
+        }
+
+    </script>
+
+</body>
+
+</html>

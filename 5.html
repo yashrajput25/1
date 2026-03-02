@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <p>Cart Quantity</p>
+
+    <button onclick="show_quant()">
+        Show Quantity
+    </button>
+
+    <button onclick="add_to_cart(1)">
+        Add to Cart
+    </button>
+
+    <button onclick="add_to_cart(2)">
+        +2
+    </button>
+
+    <button onclick="add_to_cart(3)">
+        +3
+    </button>
+
+    <button onclick="reset()">
+        Reset cart
+    </button>
+
+    <script>
+        let quantity = 0;
+        function show_quant(){
+            console.log(`Cart Quantity: ${quantity}`);
+        }
+
+        function add_to_cart(x){
+            quantity+= x;
+            console.log(`Cart Quantity: ${quantity}`);
+        }
+
+        function reset(){
+            quantity = 0;
+            console.log(`Cart Quantity: ${quantity}`);
+        } 
+
+        let cost = 5 + (2*3) +9;
+        cost_after_tax = cost ;
+        console.log(`The cost is : $${cost_after_tax}`);
+    </script>
+
+</body>
+
+
+</html>
