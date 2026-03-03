@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <p>Rock Paper Scissors</p>
+
+<button onclick="playedRock()">
+    Rock
+</button>
+
+<button onclick="playedPaper()">
+    Paper
+</button>
+
+<button onclick="playedScissor()">
+    Scissors
+</button>
+
+</body>
+<script>
+
+    function getRandomMove(){
+        const moves = ["Rock", "Paper", "Scissors"];
+        let moveIndex = Math.floor(Math.random()*moves.length);
+        let computerMove = moves[moveIndex];
+        return computerMove;
+    }
+
+    function playedRock(){
+        let computerMove = getRandomMove();
+        console.log(computerMove);
+        if(computerMove === 'Rock'){
+            alert('You chose Rock and Computer chose rock. It\'s a tie');
+        }else if(computerMove === 'Paper'){
+            alert('You chose Rock  and Computer chose Paper. You lose ');
+        }else{
+            alert('You chose Rock and Computer chose Scissors. You win ');
+        }
+    }
+
+    function playedScissor(){
+        let computerMove = getRandomMove();
+        if(computerMove === 'Rock'){
+            alert('You chose Scissors and Computer chose rock.You lose');
+        }else if(computerMove === 'Paper'){
+            alert('You chose Scissors and Computer chose Paper. You win');
+        }else{
+            alert('You chose Scissors and Computer chose Scissors. It\'s a tie');
+        }
+
+    }
+
+    function playedPaper(){
+        let computerMove = getRandomMove();
+        if(computerMove === 'Rock'){
+            alert('You chose Paper  and Computer chose rock. You win');
+        }else if(computerMove === 'Paper'){
+            alert('You chose Paper and Computer chose Paper. It\'s a tie ');
+        }else{
+            alert('You chose Paper and Computer chose Scissors. You lose');
+        }
+
+    }
+
+</script>
+
+</html>
