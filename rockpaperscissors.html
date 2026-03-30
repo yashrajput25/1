@@ -22,8 +22,19 @@
     Scissors
 </button>
 
+<button onclick="resetScore()">
+    Reset Score
+</button>
+
 </body>
 <script>
+
+    const score = {
+        win: 0,
+        loss: 0,
+        tie: 0
+    }
+
 
     function getRandomMove(){
         const moves = ["Rock", "Paper", "Scissors"];
@@ -34,38 +45,69 @@
 
     function playedRock(){
         let computerMove = getRandomMove();
+        let result;
         console.log(computerMove);
         if(computerMove === 'Rock'){
-            alert('You chose Rock and Computer chose rock. It\'s a tie');
+            score.tie++;
+            result = 'tie'
         }else if(computerMove === 'Paper'){
-            alert('You chose Rock  and Computer chose Paper. You lose ');
+            score.loss++;
+            result = 'loss'
+            
         }else{
-            alert('You chose Rock and Computer chose Scissors. You win ');
+            score.win++;
+            result = 'win'
         }
+
+        alert(`You chose Rock. Computer chose ${computerMove}. Result: ${result} \n
+        wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}
+        `)
     }
 
     function playedScissor(){
         let computerMove = getRandomMove();
         if(computerMove === 'Rock'){
-            alert('You chose Scissors and Computer chose rock.You lose');
+            score.loss++;
+            result = 'loss'
+        
         }else if(computerMove === 'Paper'){
-            alert('You chose Scissors and Computer chose Paper. You win');
+            score.win++;
+            result= 'win'
+            
         }else{
-            alert('You chose Scissors and Computer chose Scissors. It\'s a tie');
+            score.tie++;
+            result = 'tie';
         }
-
+        
+        alert(`You chose Rock. Computer chose ${computerMove}. Result: ${result} \n
+        wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}
+        `)
     }
 
     function playedPaper(){
         let computerMove = getRandomMove();
         if(computerMove === 'Rock'){
-            alert('You chose Paper  and Computer chose rock. You win');
+            score.win++;
+            result = 'win'
+            
         }else if(computerMove === 'Paper'){
-            alert('You chose Paper and Computer chose Paper. It\'s a tie ');
+            score.tie++;
+            result = 'tie'
+            
         }else{
-            alert('You chose Paper and Computer chose Scissors. You lose');
+            score.loss++;
+            result = 'loss'
         }
+        
+        alert(`You chose Rock. Computer chose ${computerMove}. Result: ${result} \n
+        wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}
+        `)
+    }
 
+    function resetScore(){
+        score.win = 0, score.loss = 0, score.tie = 0;
+        alert(`Score Reset! \n
+        wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}`)
     }
 
 </script>
