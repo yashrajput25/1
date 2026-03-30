@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+
+        <p>Guess the result of the coin</p>
+        <button onclick="tossCoins('Heads')">
+            Heads
+        </button>
+        <button onclick="tossCoins('Tails')">
+            Tails
+        </button>
+
+        <script>
+
+            function tossCoins(value){
+                let randomNumber = Math.random()
+                console.log(randomNumber)
+                let result = null;
+                randomNumber < 0.5 ? result='Heads' : result= 'Tails'
+                console.log(result)
+
+                if(value === result){
+                    alert( `You guessed ${value}, and the result on flip was ${result}\n 
+                    You won`)
+                }else{
+                    alert( `You guessed ${value}, and the result on flip was ${result}\n 
+                    You loose`)
+                }
+                
+            }
+
+
+
+        </script>
+    </body>
+
+
+</html>
