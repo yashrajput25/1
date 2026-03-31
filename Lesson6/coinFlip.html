@@ -16,24 +16,35 @@
 
         <script>
 
+            
+            const score = JSON.parse(localStorage.getItem('score')) || {
+                wins: 0,
+                losses: 0
+            };
+
+            
+
             function tossCoins(value){
                 let randomNumber = Math.random()
-                console.log(randomNumber)
-                let result = null;
-                randomNumber < 0.5 ? result='Heads' : result= 'Tails'
+                
+                let result = randomNumber < 0.5 ? 'Heads' : 'Tails'
                 console.log(result)
 
                 if(value === result){
-                    alert( `You guessed ${value}, and the result on flip was ${result}\n 
-                    You won`)
+                    score.wins++;
                 }else{
-                    alert( `You guessed ${value}, and the result on flip was ${result}\n 
-                    You loose`)
+                    score.losses++;
                 }
+
+                const {wins, losses} = score 
                 
+                alert( `You guessed ${value}, and the result on flip was ${result}
+                wins: ${wins}
+                losses: ${losses}`) 
+            
+            console.log(localStorage.setItem('score',JSON.stringify(score)))
             }
-
-
+            
 
         </script>
     </body>
