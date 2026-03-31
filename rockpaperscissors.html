@@ -22,6 +22,10 @@
     Scissors
 </button>
 
+<p class="js-result-element"></p>
+
+<p class="js-moves-element"></p>
+
 <p class="js-score-element"></p>
 
 <button onclick="resetScore()">
@@ -32,6 +36,9 @@
 <script>
 
     const scoreElement = document.querySelector('.js-score-element')
+    const resultElement = document.querySelector('.js-result-element')
+    const moveElement = document.querySelector('.js-moves-element')
+    let result, computerMove;
 
     const score = JSON.parse(localStorage.getItem('score')) || {
         win: 0,
@@ -50,8 +57,7 @@
     }
 
     function playedRock(){
-        let computerMove = getRandomMove();
-        let result;
+        computerMove = getRandomMove();
         console.log(computerMove);
         if(computerMove === 'Rock'){
             score.tie++;
@@ -64,13 +70,13 @@
             score.win++;
             result = 'win'
         }
-        updateScore()
+        updateScore('rock')
         alert(`You chose Rock. Computer chose ${computerMove}. Result: ${result} \n wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}
         `)
     }
 
     function playedScissor(){
-        let computerMove = getRandomMove();
+        computerMove = getRandomMove();
         if(computerMove === 'Rock'){
             score.loss++;
             result = 'loss'
@@ -83,14 +89,14 @@
             score.tie++;
             result = 'tie';
         }
-        updateScore()
-        alert(`You chose Rock. Computer chose ${computerMove}. Result: ${result} \n
+        updateScore('scissors')
+        alert(`You chose Scissors. Computer chose ${computerMove}. Result: ${result} \n
 wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}
         `)
     }
 
     function playedPaper(){
-        let computerMove = getRandomMove();
+        computerMove = getRandomMove();
         if(computerMove === 'Rock'){
             score.win++;
             result = 'win'
@@ -103,15 +109,17 @@ wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}
             score.loss++;
             result = 'loss'
         }
-        updateScore()
-        alert(`You chose Rock. Computer chose ${computerMove}. Result: ${result} \n
+        updateScore('paper')
+        alert(`You chose Paper. Computer chose ${computerMove}. Result: ${result} \n
 wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}
         `)
     }
 
 
-    function updateScore(){
+    function updateScore(user_move){
         localStorage.setItem('score', JSON.stringify(score))
+        moveElement.innerHTML = `Your move : ${user_move}, Computer's move : ${computerMove}`
+        resultElement.innerHTML = (result ==='win' ||result === 'loss' )? `You ${result}` : `It's a ${result}`
         scoreElement.innerHTML = `win : ${score.win} , loss: ${score.loss} , tie: ${score.tie}`
     }
 
@@ -123,9 +131,6 @@ wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}
 wins: ${score.win} , ties:  ${score.tie}, losses: ${score.loss}`)
     }
 
-console.log(typeof console)
-console.log('hello'.le)
-console.log('hello'.toUpperCase())
 
 
 </script>
