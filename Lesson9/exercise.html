@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <button onclick="displayResult(0)">Heads</button>
+        <button onclick = "displayResult(1)">Tails</button>
+        <p class="js-selection">You chose: </p>
+
+
+
+        <input class="js-input-value"> <button onclick="displayInput()">Submit</button>
+        <p class = 'js-display-input'></p>
+
+
+        <script> 
+        const inputValue = document.querySelector('.js-input-value')
+        inputValue.addEventListener('keydown', function(event){
+            if(event.key === 'Enter'){
+                displayInput()
+            }
+        })
+
+            function displayInput(){
+                
+                userName = (inputValue.value)
+                
+                const displayInputElement = document.querySelector('.js-display-input')
+                displayInputElement.innerHTML = `Your name is : ${userName}`
+            }
+
+
+
+            function displayResult(value){
+                const selectedSideElement = document.querySelector('.js-selection')
+                if(value === 0){
+                    selectedSideElement.innerHTML = 'You chose: Heads'
+                }else{
+                    selectedSideElement.innerHTML = 'You chose: Tails'
+                }
+
+            }
+
+        </script>
+    </body>
+</html>
