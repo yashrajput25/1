@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+
+            function compareProducts(product1, product2){
+                return product1.price > product2.price ? 'product2' :' product1'
+            }
+
+            function isSameProduct(product1, product2){
+                if(product1 === product2){
+                    return true
+                }
+                return false;
+            }
+
+            const product1 = {
+                name: "Basketball",
+                price: 2095,
+                ['delivery-time']: ['3 days']
+            }
+
+            const product3 = product1;
+
+            const product2 = {
+                name: "Cricket Bat",
+                price: 2095,
+                ['delivery-time']: ['3 days']
+            }
+            
+            console.log(isSameProduct(product1, product3))
+            console.log('Good Morning'.toLowerCase())
+            console.log('test'.repeat(2))
+            
+        </script>
+        
+    </body>
+</html>
