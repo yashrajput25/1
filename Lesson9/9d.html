@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <input type="text" class="js-input" onkeydown="if(event.key === 'Enter'){
+            display()
+        }">
+        <button onclick="display()">submit</button>
+        <p class="js-paragraph"></p>
+
+        <script>
+            function display(){
+                const inputElement = document.querySelector(".js-input")
+                const paragraphElement = document.querySelector(".js-paragraph")
+                const text = inputElement.value
+                paragraphElement.innerHTML = `The text inside the box is : ${text}`
+            }
+        </script>
+    </body>
+</html>

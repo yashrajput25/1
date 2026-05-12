@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <button class = "head-button" onclick="print('heads')">
+            heads
+        </button>
+
+        <button class ="tail-button" onclick="print('tails')">
+            tails
+        </button>
+        <p class = "js-paragraph">
+        </p>
+
+        <script>
+
+            const headbuttonElement = document.querySelector(".head-button")
+            const tailButtonElement = document.querySelector(".tail-button")
+            const paragraphElement = document.querySelector(".js-paragraph")
+
+            function print(value){
+                paragraphElement.innerHTML = `You chose: ${value}`
+            }
+            
+
+        </script>
+    </body>
+</html>
