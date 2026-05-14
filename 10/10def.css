@@ -1,0 +1,15 @@
+        button{
+            background-color: rgb(230,230,230);
+            border:none;
+            border-radius: 7px;
+            font-size:15px;
+            padding:10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .enabled-button{
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
