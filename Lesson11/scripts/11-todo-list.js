@@ -1,35 +1,47 @@
-            const myArray = [];
+            const todoList = [
+                {name: 'make dinner',
+                dueDate: '2025-05-16'}, 
+                
+                {name: 'wash dishes',
+                dueDate: '2025-05-16'}
+        ];
 
-            function addValue(){
-                const inputElement = document.querySelector(".js-input-2");
-                let inputValue = inputElement.value
-                console.log(inputValue);
-                myArray.push(inputValue)
-                console.log(myArray)
-                inputElement.value = ''
-                makeList(myArray)
-            }
+            // function addValue(){
+            //     const inputElement = document.querySelector(".js-input-2");
+            //     let inputValue = inputElement.value
+            //     console.log(inputValue);
+            //     todoList.push(inputValue)
+            //     console.log(todoList)
+            //     inputElement.value = ''
+            //     makeList(todoList)
+            // }
 
-            function makeList(myArray){
+            // function makeList(todoList){
 
-                const listElement = document.querySelector(".js-list")
-                listElement.innerHTML = '';
-                let text = ''
+            //     const listElement = document.querySelector(".js-list")
+            //     listElement.innerHTML = '';
+            //     let text = ''
 
-                for(let i = 0; i < myArray.length ; i++){
-                    text += `<li> ${myArray[i]} </li>`
-                }
+            //     for(let i = 0; i < todoList.length ; i++){
+            //         text += `<li> ${todoList[i]} </li>`
+            //     }
 
                 
-                listElement.innerHTML = `<ul> ${text} </ul>`;
+            //     listElement.innerHTML = `<ul> ${text} </ul>`;
                 
-            }
+            // }
 
             function addTodo(){
                 const inputElement = document.querySelector(".js-input");
-                myArray.push(inputElement.value);
+                const dateElement = document.querySelector(".js-date");
+                const name = inputElement.value;
+                const dueDate = dateElement.value;
+                todoList.push({
+                    name,
+                    dueDate });
                 inputElement.value = " ";
-                console.log(myArray);
+                dateElement.value = ""
+                console.log(todoList);
                 renderTodoList();
             }
 
@@ -42,19 +54,21 @@
                 listElement.innerHTML = "";
                 let text = "";
 
-                for(let i = 0; i < myArray.length ; i++){
-                    let todo = myArray[i]
-                    text+= `<p> ${todo}
-
-                    <button onclick="myArray.splice(${i},1);
+                for(let i = 0; i < todoList.length ; i++){
+                    //let todo = todoList[i]
+                    const {name , dueDate} = todoList[i]; //destructuring
+                    text+= `<div> ${name} </div>
+                    <div> ${dueDate} </div>
+                    <button class="delete-button" onclick="todoList.splice(${i},1);
                     renderTodoList();"
-                    > Delete </button> 
-                    </p>`
+                    > Delete </button>`
                 }
 
                 listElement.innerHTML = text;
 
             }
+
+            renderTodoList();
 
 
 
