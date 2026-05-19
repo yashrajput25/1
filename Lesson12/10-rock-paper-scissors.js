@@ -1,10 +1,19 @@
+
+const autoPlayButtonElement = document.querySelector(".js-auto-play");
+autoPlayButtonElement.addEventListener('click', () => {
+    !isAutoPlayOn ? console.log("Auto-Play started"): console.log("Auto-Play stopped")
+    autoPlay();
+});
+
+
+
 let score = JSON.parse(localStorage.getItem('score')) || {
             wins: 0,
             losses: 0,
             ties: 0
         };
 
-        updateScoreElement();
+    updateScoreElement();
 
         function playGame(playerMove) {
             const computerMove = pickComputerMove();
@@ -12,40 +21,44 @@ let score = JSON.parse(localStorage.getItem('score')) || {
             let result = '';
 
             if (playerMove === 'scissors') {
-            if (computerMove === 'rock') {
-                result = 'You lose.';
-            } else if (computerMove === 'paper') {
-                result = 'You win.';
-            } else if (computerMove === 'scissors') {
-                result = 'Tie.';
-            }
+                if (computerMove === 'rock') {
+                    result = 'You lose.';
+                } else if (computerMove === 'paper') {
+                    result = 'You win.';
+                } else if (computerMove === 'scissors') {
+                    result = 'Tie.';
+                }
 
             } else if (playerMove === 'paper') {
-            if (computerMove === 'rock') {
-                result = 'You win.';
-            } else if (computerMove === 'paper') {
-                result = 'Tie.';
-            } else if (computerMove === 'scissors') {
-                result = 'You lose.';
-            }
+                if (computerMove === 'rock') {
+                    result = 'You win.';
+                } else if (computerMove === 'paper') {
+                    result = 'Tie.';
+                } else if (computerMove === 'scissors') {
+                    result = 'You lose.';
+                }
             
             } else if (playerMove === 'rock') {
-            if (computerMove === 'rock') {
-                result = 'Tie.';
-            } else if (computerMove === 'paper') {
-                result = 'You lose.';
-            } else if (computerMove === 'scissors') {
-                result = 'You win.';
-            }
+                if (computerMove === 'rock') {
+                    result = 'Tie.';
+                } else if (computerMove === 'paper') {
+                    result = 'You lose.';
+                } else if (computerMove === 'scissors') {
+                    result = 'You win.';
+                }
             }
 
+
+
+
             if (result === 'You win.') {
-            score.wins += 1;
+                score.wins += 1;
             } else if (result === 'You lose.') {
-            score.losses += 1;
+                score.losses += 1;
             } else if (result === 'Tie.') {
-            score.ties += 1;
+                score.ties += 1;
             }
+
 
             localStorage.setItem('score', JSON.stringify(score));
 
@@ -73,6 +86,7 @@ let score = JSON.parse(localStorage.getItem('score')) || {
             document.querySelector('.js-moves').innerHTML = `You ${X}  ${Y} Computer`;
         }
 
+
         function updateScoreElement() {
             document.querySelector('.js-score')
             .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
@@ -98,8 +112,6 @@ let score = JSON.parse(localStorage.getItem('score')) || {
         let intervalId;
 
         function autoPlay(){
-
-            const autoPlayButtonElement = document.querySelector(".js-auto-play");
 
             if(!isAutoPlayOn){
                 intervalId = setInterval(
@@ -140,8 +152,28 @@ let score = JSON.parse(localStorage.getItem('score')) || {
                 playGame('paper');
             }else if(event.key === 's'){
                 playGame('Scissors')
-            }else{
+            }else if(event.key === 'a'){
+                autoPlay();
+            }else if(event.key === 'Backspace'){
+                resetScore()
+            }
+            else{
                 console.log("This key has no functionality to it.")
             }
         });
 
+
+//resetting score//
+const resetButtonElement = document.querySelector(".js-reset-button");
+resetButtonElement.addEventListener('click' , ()=>{
+    resetScore()
+})
+
+
+
+const resetScore = ()=>{
+    console.log("Reset Score function called")
+    score.wins = 0, score.losses = 0, score.ties = 0;
+    localStorage.removeItem('score');
+    updateScoreElement();
+}
