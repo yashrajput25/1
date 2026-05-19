@@ -164,16 +164,36 @@ let score = JSON.parse(localStorage.getItem('score')) || {
 
 
 //resetting score//
+const resetConfirmationElement = document.querySelector(".js-reset-confirmation");
 const resetButtonElement = document.querySelector(".js-reset-button");
-resetButtonElement.addEventListener('click' , ()=>{
-    resetScore()
-})
 
+
+resetButtonElement.addEventListener('click' , ()=>{
+    resetScore();
+})
 
 
 const resetScore = ()=>{
     console.log("Reset Score function called")
-    score.wins = 0, score.losses = 0, score.ties = 0;
-    localStorage.removeItem('score');
-    updateScoreElement();
+    resetConfirmationElement.innerHTML = `<p> 
+    Do you want to reset the scores?
+    <button class="js-reset-yes-button">Yes</button>
+    <button class="js-reset-no-button">No</button>
+    </p>`
+
+    document.querySelector(".js-reset-yes-button").addEventListener('click', ()=>{
+        console.log("Yes pressed! Reseting...")
+        score.wins = 0, score.losses = 0, score.ties = 0;
+        localStorage.removeItem('score');
+        updateScoreElement();
+        resetConfirmationElement.innerHTML ="";
+    });
+
+    document.querySelector(".js-reset-no-button").addEventListener('click', ()=>{
+        console.log("No pressed. Hiding the message");
+        resetConfirmationElement.innerHTML = "";
+    })
+    
+
+
 }

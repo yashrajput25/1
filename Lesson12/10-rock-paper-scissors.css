@@ -22,11 +22,12 @@
                 cursor: pointer;
             }
 
-            .reset-button, .auto-play-button{
+            .reset-button, .auto-play-button, .reset-confirmation button{
                 background-color: white;
                 font-size: 15px;
                 border:none;
                 padding: 8px 15px;
+                margin:5px;
             }
 
             .result{
@@ -42,4 +43,9 @@
             .scores{
                 margin-top: 60px;
             }
+
+            .reset-confirmation {
+                color:white
+            }
+
 
