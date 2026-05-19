@@ -1,24 +1,28 @@
     
-
-
-    
     const todoList = JSON.parse(
         localStorage.getItem('todoList') 
     ) || [];
 
-
+    document.querySelector(".js-add-button").addEventListener('click', addTodo);
 
     function addTodo(){
             const inputElement = document.querySelector(".js-input");
             const dateElement = document.querySelector(".js-date");
             const name = inputElement.value;
             const dueDate = dateElement.value;
+
+            //pushing the name & dueDate in the array
             todoList.push({
                 name,
                 dueDate });
+
+            //clearing the values in the input elements    
             inputElement.value = "";
             dateElement.value = ""
+
             console.log(todoList);
+
+            //calling function to render the list on screen
             renderTodoList();
         }
 
@@ -26,23 +30,21 @@
     function renderTodoList(){
             //printing the array on screen
             listElement = document.querySelector(".js-list");
-            listElement.innerHTML = "";
             let text = "";
 
             
             // NEW LOOP 
             todoList.forEach(function(value , index){
-                //console.log(value);
+                
                 const {name, dueDate} = value;
                 console.log(name, dueDate, index);
+
                 text += `<div> ${name} </div>
                 <div> ${dueDate} </div>
-                <button class = "delete-button"
-                onclick = "todoList.splice(${index},1);
-                renderTodoList();"
+                <button class = "delete-button js-delete-button";
                 > Delete </button>`
 
-            })
+            });
 
             // OLD FOR LOOP
             // for(let i = 0; i < todoList.length ; i++){
@@ -58,9 +60,26 @@
             listElement.innerHTML = text;
             localStorage.setItem('todoList', JSON.stringify(todoList));
 
+            //deleteButtonElements is an array of all the delete buttons on the screen
+            deleteButtonElements = document.querySelectorAll(".js-delete-button");
+
+            console.log(deleteButtonElements);
+
+            deleteButtonElements.forEach((deleteButtonElement, index)=>{
+                deleteButtonElement.addEventListener('click', ()=>{
+                    todoList.splice(index,1);
+                    renderTodoList();
+                })
+            })
+
         }
 
     renderTodoList();
+
+
+
+
+
 
 
 
