@@ -14,6 +14,9 @@ runTwice(add)
 
 
 //12c
+document.querySelector(".js-start-button").
+addEventListener('click',updateStartButtonTwo);
+
 function updateStartButton(){
     
     setTimeout(()=>{
@@ -51,16 +54,20 @@ function updateStartButtonTwo(){
 // }
 
 //12f
-let intervalId = null;
+let timeOutId;
+
+document.querySelector(".js-add-button").addEventListener('click', ()=>{
+    addToCart();
+})
 
 function addToCart(){
     const addedElement = document.querySelector(".js-added");
     addedElement.innerHTML = "Added";
-    if(intervalId){
-        clearInterval(intervalId);
-    }
+
+    clearTimeout(timeOutId);
+
     
-    intervalId = setTimeout(()=>{
+    timeOutId = setTimeout(()=>{
         addedElement.innerHTML = "";
     }, 4000);
 }
@@ -80,7 +87,16 @@ setInterval(()=>{
 },1000);
 */
 
+//12i
 let messages = 1;
+
+document.querySelector(".js-add").addEventListener('click', ()=>{
+    updateValue(1);
+});
+
+document.querySelector(".js-remove").addEventListener('click', ()=>{
+    updateValue(0);
+})
 
 function updateValue(param){
     param === 1 ? messages++ : messages--;
