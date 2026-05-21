@@ -6,6 +6,7 @@
     document.querySelector(".js-add-button").addEventListener('click', addTodo);
 
     function addTodo(){
+        
             const inputElement = document.querySelector(".js-input");
             const dateElement = document.querySelector(".js-date");
             const name = inputElement.value;
