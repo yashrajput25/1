@@ -58,6 +58,7 @@ products.forEach((product)=>{
 
 const productGridElement = document.querySelector('.js-products-grid');
 productGridElement.innerHTML = productHTML
+let setTimeoutId;
 
 document.querySelectorAll('.js-add-to-cart')
 .forEach((button)=>{
@@ -100,10 +101,13 @@ document.querySelectorAll('.js-add-to-cart')
             const addedToCartElement = document.querySelector(`.js-added-to-cart-${productId}`)
             addedToCartElement.innerHTML = '<img src="images/icons/checkmark.png"> Added';
             addedToCartElement.classList.add("added-to-cart");
-            setTimeout(()=>{
-                addedToCartElement.innerHTML = '';
-                addedToCartElement.classList.remove("added-to-cart");
-            },2000);
+            clearTimeout(setTimeoutId)
+            setTimeoutId = setTimeout(()=>{
+                        console.log("timeout called");
+                        addedToCartElement.innerHTML = '';
+                        addedToCartElement.classList.remove("added-to-cart");
+            },3000);
+
 
             //console.log(`Item Added: ${productId}`);
 
