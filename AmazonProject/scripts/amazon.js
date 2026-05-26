@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js';
+import {cart, addToCart} from '../data/cart.js';
 import { products } from '../data/products.js';
 
 
@@ -62,6 +62,19 @@ const productGridElement = document.querySelector('.js-products-grid');
 productGridElement.innerHTML = productHTML
 let setTimeoutId;
 
+
+function updateCartQuantity(){
+    
+        let cartQuantity = 0;
+
+        cart.forEach((item)=>{
+                cartQuantity = Number(cartQuantity) + Number(item.quantity);
+            })
+        document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+}
+
+
+
 document.querySelectorAll('.js-add-to-cart')
 .forEach((button)=>{
 
@@ -76,27 +89,10 @@ document.querySelectorAll('.js-add-to-cart')
             const quantity = selectorElement.value;
             console.log(quantity);
 
-            let matchingItem;
+            addToCart(productId, quantity);
+            updateCartQuantity();
 
-            cart.forEach((item)=>{
-                item.id === productId ? matchingItem = item : 0;
-            })
 
-            if(matchingItem){
-                matchingItem.quantity = Number(matchingItem.quantity) + Number(quantity);
-            }else{
-                cart.push({
-                    productId,
-                    quantity
-                })
-            }
-
-            let cartQuantity = 0;
-
-            cart.forEach((item)=>{
-                cartQuantity = Number(cartQuantity) + Number(item.quantity);
-            })
-            document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 
 
             //added to cart message//
