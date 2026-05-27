@@ -1,4 +1,4 @@
-import { cart } from '../data/cart.js';
+import { cart, updateQuantity } from '../data/cart.js';
 import { products } from '../data/products.js';
 import {formatCurrency} from './utils/money.js'
 import { removeFromCart } from '../data/cart.js';
@@ -35,8 +35,12 @@ cart.forEach((cartItem) =>{
                     <span>
                         Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                     </span>
-                    <span class="update-quantity-link link-primary">
+                    <span data-product-id = ${product.id} class="update-quantity-link link-primary js-update-link">
                         Update
+                    </span>
+                    <input class="quantity-input js-quantity-input-${product.id}">
+                    <span data-product-id = ${product.id} class="save-quantity-link link-primary js-save-link">
+                    Save
                     </span>
                     <span data-product-id = ${product.id} class="delete-quantity-link 
                     link-primary js-delete-link">
@@ -99,6 +103,31 @@ cart.forEach((cartItem) =>{
 document.querySelector('.order-summary').innerHTML = cartSummaryHTML;
 
 
+//Clicking the update button
+document.querySelectorAll('.js-update-link').forEach((link)=>{
+
+    link.addEventListener('click', ()=>{
+        const productId = link.dataset.productId;
+        console.log(productId);
+        document.querySelector(`.js-cart-item-container-${productId}`).classList.add("is-editing-quantity");
+    })
+})
+
+
+//Clicking the save button
+document.querySelectorAll('.js-save-link').forEach((link)=>{
+    link.addEventListener('click',()=>{
+        const productId = link.dataset.productId;
+        let inputValue = (document.querySelector(`.js-quantity-input-${productId}`).value);
+        inputValue !== null ? console.log(Number(inputValue)): 0;
+        document.querySelector(`.js-cart-item-container-${productId}`).classList.remove("is-editing-quantity");
+        updateQuantity(productId, inputValue);
+    });
+})
+
+
+
+//Clicking the delete button
 document.querySelectorAll('.js-delete-link').forEach((link)=>{
     link.addEventListener('click', ()=>{
         const productId = link.dataset.productId;

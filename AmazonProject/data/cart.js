@@ -45,4 +45,14 @@ export function calculateCartQuantity(){
 }
 
 
+export function updateQuantity(productId, newQuantity){
+
+    cart.forEach((cartItem)=>{
+        productId === cartItem.productId ? cartItem.quantity = newQuantity : 0;
+    })
+    saveToStorage();
+
+}
+
+
 
