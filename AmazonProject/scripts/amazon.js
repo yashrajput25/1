@@ -82,7 +82,7 @@ document.querySelectorAll('.js-add-to-cart')
         button.addEventListener('click', ()=>{
 
 
-            const { productId }= button.dataset;
+            const { productId } = button.dataset;
             console.log(productId);
 
 
@@ -106,9 +106,6 @@ document.querySelectorAll('.js-add-to-cart')
                         addedToCartElement.innerHTML = '';
                         addedToCartElement.classList.remove("added-to-cart");
             },3000);
-
-
-            //console.log(`Item Added: ${productId}`);
 
     });
 })

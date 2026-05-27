@@ -7,12 +7,14 @@ function saveToStorage(){
 export function addToCart(productId, quantity){
         let matchingItem;
         cart.forEach((item)=>{
-                item.id === productId ? matchingItem = item : 0;
+                matchingItem = item.productId === productId ?  item : null;
             })
 
         if(matchingItem){
+            console.log("This item already exists!, adding it")
                 matchingItem.quantity = Number(matchingItem.quantity) + Number(quantity);
         }else{
+            console.log("This item DOES NOT exists!, adding it")
             cart.push({
                 productId,
                 quantity
