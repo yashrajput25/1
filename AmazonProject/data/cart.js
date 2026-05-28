@@ -17,7 +17,8 @@ export function addToCart(productId, quantity){
             console.log("This item DOES NOT exists!, adding it")
             cart.push({
                 productId,
-                quantity
+                quantity,
+                deliveryOptions: '1'
             })
         }
         saveToStorage();
