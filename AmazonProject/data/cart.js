@@ -18,11 +18,12 @@ export function addToCart(productId, quantity){
             cart.push({
                 productId,
                 quantity,
-                deliveryOptions: '1'
+                deliveryOptionId: 1
             })
         }
         saveToStorage();
 }
+
 
 export function removeFromCart(productId){
     const new_cart = [];
