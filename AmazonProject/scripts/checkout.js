@@ -1,4 +1,4 @@
-import { cart, updateQuantity } from '../data/cart.js';
+import { cart, updateDeliveryOption, updateQuantity } from '../data/cart.js';
 import { products } from '../data/products.js';
 import {formatCurrency} from './utils/money.js'
 import { removeFromCart } from '../data/cart.js';
@@ -25,11 +25,11 @@ cart.forEach( (cartItem) => {
 
             deliveryOptions.forEach((option) => {
 
-                if(deliveryOptionId === option.id){
+                if(deliveryOptionId == option.id){
                     deliveryOption = option;
                 }
             });
-
+            console.log(deliveryOption);
             const today = dayjs();
             const deliveryDate = today.add(deliveryOption.deliveryDays,'day');
             const dateString = deliveryDate.format('dddd, MMMM D');
@@ -101,7 +101,6 @@ document.querySelector('.order-summary').innerHTML = cartSummaryHTML;
 
 
 function deliveryOptionsHTML(matchingProduct, cartItem){
-    
     let html = '';
 
     deliveryOptions.forEach((deliveryOption)=>{
@@ -114,7 +113,8 @@ function deliveryOptionsHTML(matchingProduct, cartItem){
 
 
         html+=`               
-                <div class="delivery-option">
+                <div class="delivery-option js-delivery-option "
+                data-product-id ="${matchingProduct.id}" data-delivery-option-id = "${deliveryOption.id}">
 
                         <input type="radio"
                             ${isChecked ? 'checked' : ''}
@@ -138,8 +138,6 @@ function deliveryOptionsHTML(matchingProduct, cartItem){
         return html;
 
 }
-
-
 
 
 //Clicking the update button
@@ -183,5 +181,17 @@ document.querySelectorAll('.js-delete-link').forEach((link)=>{
 let cartQuantity = calculateCartQuantity();
 document.querySelector('.js-return-to-home-link').innerHTML = cartQuantity;
 
+
+
+document.querySelectorAll(".js-delivery-option").forEach((element)=>{
+
+    element.addEventListener('click', ()=>{
+
+        const { productId, deliveryOptionId } = element.dataset;
+        console.log(productId, deliveryOptionId);
+        updateDeliveryOption(productId, deliveryOptionId);
+    });
+
+})
 
 
