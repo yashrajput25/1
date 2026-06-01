@@ -1,8 +1,12 @@
 export let cart = JSON.parse(localStorage.getItem("cart")) || [];
+console.log(cart);
+
 
 function saveToStorage(){
     localStorage.setItem('cart', JSON.stringify(cart));
 }
+
+
 
 export function addToCart(productId, quantity){
         let matchingItem;
@@ -15,14 +19,17 @@ export function addToCart(productId, quantity){
                 matchingItem.quantity = Number(matchingItem.quantity) + Number(quantity);
         }else{
             console.log("This item DOES NOT exists!, adding it")
+            console.log(productId);
             cart.push({
                 productId,
                 quantity,
-                deliveryOptionId: 1
+                deliveryOptionId: '1'
             })
         }
+
         saveToStorage();
 }
+
 
 
 export function removeFromCart(productId){
@@ -36,6 +43,8 @@ export function removeFromCart(productId){
     saveToStorage();
 }
 
+
+
 export function calculateCartQuantity(){
         
         let cartQuantity = 0;
@@ -45,6 +54,7 @@ export function calculateCartQuantity(){
             })
         return cartQuantity;  
 }
+
 
 
 export function updateQuantity(productId, newQuantity){
@@ -57,11 +67,13 @@ export function updateQuantity(productId, newQuantity){
 }
 
 
+
 export function updateDeliveryOption(productId , deliveryOptionId){
     let matchingItem;
 
             cart.forEach((cartItem)=> {
-                if(cartItem.productId == productId){
+                console.log(cartItem.productId);
+                if(cartItem.productId === productId){
                     matchingItem = cartItem;
                 }
             });

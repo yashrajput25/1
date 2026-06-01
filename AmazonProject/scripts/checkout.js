@@ -12,7 +12,7 @@ let cartSummaryHTML = '';
 cart.forEach( (cartItem) => {
 
     const productId = cartItem.productId;
-    let matchingProduct = null;
+    let matchingProduct;
 
     products.forEach( (product) => {
 
@@ -21,15 +21,18 @@ cart.forEach( (cartItem) => {
             matchingProduct = product;
 
             const deliveryOptionId = cartItem.deliveryOptionId;
+            
             let deliveryOption;
 
-            deliveryOptions.forEach((option) => {
-
-                if(deliveryOptionId == option.id){
+            deliveryOptions.forEach((option) => {              
+                
+                if(deliveryOptionId === option.id){
                     deliveryOption = option;
                 }
+
             });
-            console.log(deliveryOption);
+
+            console.log("The delivery option is: " , deliveryOption);
             const today = dayjs();
             const deliveryDate = today.add(deliveryOption.deliveryDays,'day');
             const dateString = deliveryDate.format('dddd, MMMM D');
@@ -97,7 +100,9 @@ cart.forEach( (cartItem) => {
     });
 })
 
+
 document.querySelector('.order-summary').innerHTML = cartSummaryHTML;
+
 
 
 function deliveryOptionsHTML(matchingProduct, cartItem){
@@ -113,7 +118,7 @@ function deliveryOptionsHTML(matchingProduct, cartItem){
 
 
         html+=`               
-                <div class="delivery-option js-delivery-option "
+                <div class="delivery-option js-delivery-option"
                 data-product-id ="${matchingProduct.id}" data-delivery-option-id = "${deliveryOption.id}">
 
                         <input type="radio"
@@ -140,6 +145,7 @@ function deliveryOptionsHTML(matchingProduct, cartItem){
 }
 
 
+
 //Clicking the update button
 document.querySelectorAll('.js-update-link').forEach((link)=>{
 
@@ -149,6 +155,7 @@ document.querySelectorAll('.js-update-link').forEach((link)=>{
         document.querySelector(`.js-cart-item-container-${productId}`).classList.add("is-editing-quantity");
     })
 })
+
 
 
 //Clicking the save button
@@ -176,6 +183,7 @@ document.querySelectorAll('.js-delete-link').forEach((link)=>{
         document.querySelector('.js-return-to-home-link').innerHTML = cartQuantity;
     })
 })
+
 
 
 let cartQuantity = calculateCartQuantity();
