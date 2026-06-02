@@ -154,6 +154,7 @@ export function renderOrderSummary(){
             inputValue !== null ? console.log(Number(inputValue)): 0;
             document.querySelector(`.js-cart-item-container-${productId}`).classList.remove("is-editing-quantity");
             updateQuantity(productId, inputValue);
+            renderOrderSummary();
         });
     })
 
@@ -169,6 +170,7 @@ export function renderOrderSummary(){
             container.remove();
             cartQuantity = calculateCartQuantity();
             document.querySelector('.js-return-to-home-link').innerHTML = cartQuantity;
+            renderOrderSummary();
         })
     })
 
