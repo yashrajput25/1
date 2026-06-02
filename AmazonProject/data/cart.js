@@ -9,10 +9,16 @@ function saveToStorage(){
 
 
 export function addToCart(productId, quantity){
-        let matchingItem;
+        console.log(productId);
+        
+        let matchingItem=null;
+
         cart.forEach((item)=>{
-                matchingItem = item.productId === productId ?  item : null;
-            })
+                console.log("Item already exists! ");
+                if(item.productId === productId){
+                    matchingItem = item;
+                }
+            });
 
         if(matchingItem){
             console.log("This item already exists!, adding it")
@@ -77,7 +83,7 @@ export function updateDeliveryOption(productId , deliveryOptionId){
                     matchingItem = cartItem;
                 }
             });
-            
+
             matchingItem.deliveryOptionId = deliveryOptionId;
 
             saveToStorage();
