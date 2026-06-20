@@ -702,4 +702,3 @@ export const products = [
 ].map((productDetails) =>{
   return new Product(productDetails);
 })
-console.log(products);
