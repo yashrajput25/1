@@ -47,7 +47,7 @@ class Cart{
             }
         });
         this.cartItem = new_cart;
-        saveToStorage();
+        this.saveToStorage();
     }
 
 
@@ -66,7 +66,7 @@ class Cart{
         this.cartItem.forEach((item)=>{
             productId === item.productId ? item.quantity = newQuantity : 0;
         })
-        saveToStorage();
+        this.saveToStorage();
     }
 
     updateDeliveryOption(productId , deliveryOptionId){
@@ -79,7 +79,7 @@ class Cart{
                 });
 
                 matchingItem.deliveryOptionId = deliveryOptionId;
-                saveToStorage();
+                this.saveToStorage();
         }
     
 }
