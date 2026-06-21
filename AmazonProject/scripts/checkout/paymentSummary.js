@@ -10,7 +10,7 @@ export function renderPaymentSummary(){
     let productPriceCents = 0;
     let shippingPriceCents = 0;
 
-    cart.forEach((cartItem)=>{
+    cart.cartItem.forEach((cartItem)=>{
         
         const productId = cartItem.productId;
 

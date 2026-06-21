@@ -1,7 +1,6 @@
 import { cart } from '../../data/cart-class.js';
 import { getProduct, products } from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js'
-import { removeFromCart } from '../../data/cart.js';
 import { calculateDeliveryDate, deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
 import renderCheckoutHeader from './checkoutHeader.js';
@@ -11,7 +10,7 @@ export function renderOrderSummary(){
     
     let cartSummaryHTML = '';
 
-    cart.forEach( (cartItem) => {
+    cart.cartItem.forEach( (cartItem) => {
 
         const productId = cartItem.productId;
 
@@ -161,7 +160,7 @@ export function renderOrderSummary(){
     document.querySelectorAll('.js-delete-link').forEach((link)=>{
         link.addEventListener('click', ()=>{
             const productId = link.dataset.productId;
-            removeFromCart(productId);
+            cart.removeFromCart(productId);
             renderOrderSummary();
         })
     })
