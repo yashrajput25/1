@@ -16,6 +16,3 @@ export function calculateDelivery(d){
         return deliveryDate.format('dddd, MMMM D');
 
 }
-
-const ans = calculateDelivery(2);
-console.log(ans);
