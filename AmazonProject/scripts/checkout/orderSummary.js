@@ -1,4 +1,4 @@
-import { cart, updateDeliveryOption, updateQuantity, calculateCartQuantity } from '../../data/cart.js';
+import { cart } from '../../data/cart-class.js';
 import { getProduct, products } from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js'
 import { removeFromCart } from '../../data/cart.js';
@@ -150,7 +150,7 @@ export function renderOrderSummary(){
             let inputValue = (document.querySelector(`.js-quantity-input-${productId}`).value);
             inputValue !== null ? console.log(Number(inputValue)): 0;
             document.querySelector(`.js-cart-item-container-${productId}`).classList.remove("is-editing-quantity");
-            updateQuantity(productId, inputValue);
+            cart.updateQuantity(productId, inputValue);
             renderOrderSummary();
         });
     })
@@ -175,7 +175,7 @@ export function renderOrderSummary(){
 
             const { productId, deliveryOptionId } = element.dataset;
             console.log(productId, deliveryOptionId);
-            updateDeliveryOption(productId, deliveryOptionId);
+            cart.updateDeliveryOption(productId, deliveryOptionId);
             renderOrderSummary();
         });
 
